@@ -36,7 +36,11 @@ fs.readFileAsync(configPath)
     process.exit(1);
 })
 .then(function (config) {  
-    var missingKeys = ['contract', 'jsonrpc', 'interface', 'port', 'ownerAddress'].filter(function (key) {
+    var missingKeys = [
+        'contract', 'contract_name', 
+        'jsonrpc_host', 'jsonrpc_port',
+        'ext_interface', 'ext_port',
+        'owner'].filter(function (key) {
         return config[key] === undefined;
     });
 
@@ -47,7 +51,7 @@ fs.readFileAsync(configPath)
 
     return config;
 }).then(function (config) {
-    log.info('2/2 Setting up ' + config.interface + ' interface on port ' + config.port);
+    log.info('2/2 Setting up ' + config.ext_interface + ' interface on port ' + config.ext_port);
     server.listen(config);
     log.info('Server Ready!');
 });

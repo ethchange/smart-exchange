@@ -1,8 +1,10 @@
 {
     "contract": "lib/contract/SmartExchange.sol",
-    "jsonrpc": "http://localhost:8545",
-    "interface": "http",
-    "port": 8080,
-    "ownerAddress": "coinbase"
+    "contract_name": "SmartExchange",
+    "jsonrpc_host": "localhost",
+    "jsonrpc_port": "8545",
+    "ext_interface": "http",
+    "ext_port": 8080,
+    "owner": "coinbase"
 }
 
