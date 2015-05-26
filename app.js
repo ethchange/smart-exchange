@@ -26,13 +26,13 @@ log.info('1/2 Loading config file ' + configPath);
 
 fs.readFileAsync(configPath)
 .catch(function (err) {
-    log.error('Cannot load config file.');
+    log.error('Cannot load config file: ' + err.message);
     process.exit(1);
 })
 .then(toString)
 .then(JSON.parse)
 .catch(function (err) {
-    log.error('Config file is not valid JSON file.');
+    log.error('Config file is not valid JSON file: ' + err.message);
     process.exit(1);
 })
 .then(function (config) {  
@@ -53,6 +53,10 @@ fs.readFileAsync(configPath)
 }).then(function (config) {
     log.info('2/2 Setting up ' + config.ext_interface + ' interface on port ' + config.ext_port);
     server.listen(config);
+}).catch(function (err) {
+    log.error('Error while settup up jsonrpc server: ' + err.message);
+    process.exit(1);
+}).then(function () {
     log.info('Server Ready!');
 });
 

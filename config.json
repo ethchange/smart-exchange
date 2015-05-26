@@ -3,7 +3,7 @@
     "contract_name": "SmartExchange",
     "jsonrpc_host": "localhost",
     "jsonrpc_port": "8545",
-    "ext_interface": "http",
+    "ext_interface": "tcp",
     "ext_port": 8080,
     "owner": "0xe30b49f729469c3b8ffef495b31e4d4e790a1a46"
 }
