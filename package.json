@@ -14,7 +14,7 @@
     "colors": "^1.1.0",
     "commander": "^2.8.1",
     "jayson": "^1.2.0",
-    "web3": "ethereum/web3.js#icap",
+    "web3": "^0.5.0",
     "worker-farm": "^1.3.1"
   }
 }
