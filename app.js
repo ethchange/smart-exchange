@@ -39,7 +39,7 @@ fs.readFileAsync(configPath)
     var missingKeys = [
         'contract', 'contract_name', 
         'jsonrpc_host', 'jsonrpc_port',
-        'ext_interface', 'ext_port',
+        'exchange_interface', 'exchange_port',
         'owner'].filter(function (key) {
         return config[key] === undefined;
     });
@@ -51,7 +51,7 @@ fs.readFileAsync(configPath)
 
     return config;
 }).then(function (config) {
-    log.info('2/2 Setting up ' + config.ext_interface + ' interface on port ' + config.ext_port);
+    log.info('2/2 Setting up ' + config.exchange_interface + ' interface on port ' + config.exchange_port);
     server.listen(config);
 }).catch(function (err) {
     log.error('Error while settup up jsonrpc server: ' + err.message);
