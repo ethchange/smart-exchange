@@ -2,9 +2,10 @@
     "contract": "lib/contract/SmartExchange.sol",
     "contract_name": "SmartExchange",
     "jsonrpc_host": "localhost",
-    "jsonrpc_port": "8545",
+    "jsonrpc_port": "8101",
     "ext_interface": "http",
     "ext_port": 8080,
-    "owner": "0xe30b49f729469c3b8ffef495b31e4d4e790a1a46"
+    "owner": "0x7ae1b7fb8659cd8353e3ab197cc90f6769506d23",
+    "namereg": "0xee817813d866678124dc559d19b4504d815b296e"
 }
 
