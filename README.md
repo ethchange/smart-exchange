@@ -56,11 +56,11 @@ node app.js
 
 #### exchange_create
 
-Should be called to deploy new 'smart exchange' contract to ethereum network and to register it with given identifier.
+Should be called to deploy new `smart exchange` contract to ethereum network and to register it with given identifier.
 
 params:
 
-- identifier: 4 uppercase alphanumeric characters that are an exchange identifier
+- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
 - overwrite: boolean that indicates, if we should create new exchange with given identifier if one already exists. True is unsafe.
 
 curl example:
@@ -71,11 +71,51 @@ curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_create","params"
 
 #### exchange_transfer
 
+Should be called to transfer funds from exchange's client to other address / institution. Might be also used for internal transfers.
+
+params:
+
+- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- from: unique user identifier, 9 alphanumeric characters.
+- to, string which is one of:
+    - address, ethereum address, 20 bytes in base 16 representation
+    - direct iban, 34 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#direct
+    - indirect iban, 20 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#indirect
+    - unique userid, 9 alphanumeric characters
+- value: value that should be sent
+
+curl example:
+
+```bash
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["XREG"]}' -H "Content-Type: application/json" http://localhost:8080
+```
+
 #### exchange_transactions
+
+Should be called to get list of exchange's transactions.
+
+params:
+
+- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- options: may contain additional fields (fromBlock, toBlock), that should be used to filter exchange transactions
+
+curl example:
+
+```bash
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transactions","params":["XREG", {"fromBlock": 410000}]}' -H "Content-Type: application/json" http://localhost:8080
+```
 
 #### exchange_balance
 
+Should be called to check the balance of `smart exchange` with given identifier.
 
+params:
 
+- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
 
+curl example:
+
+```bash
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROG"]}' -H "Content-Type: application/json" http://localhost:8080
+```
 
