@@ -6,7 +6,7 @@ This script should be used to deploy and manage [ICAP](https://github.com/ethere
 - node
 - npm
 - [solc](https://github.com/ethereum/cpp-ethereum) *0.9.19, available as a part of cpp-ethereum*
-- [go-etheruem](https://github.com/ethereum/go-ethereum) *0.9.23* (or cpp-ethereum)
+- [go-etheruem](https://github.com/ethereum/go-ethereum) *0.9.26* (or cpp-ethereum)
 
 ### Test environment
 
@@ -118,4 +118,20 @@ curl example:
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROG"]}' -H "Content-Type: application/json" http://localhost:8080
 ```
+
+
+# TL;DR
+
+- first install:
+    - node
+    - npm
+    - geth (0.9.26)
+    - solc (part of cpp-ethereum, 0.9.23)
+    - [embark](https://github.com/iurimatias/embark-framework) (for setting up private chain)
+
+- (for private chain) setup your test environment using [eth-deploy](https://github.com/debris/eth-deploy)
+
+- clone this repository (smart-exchange) and setup config (address of namereg, and address of owner)
+- run `node app.js`
+- everyting is ready! you can use the API now!
 
