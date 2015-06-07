@@ -4,8 +4,8 @@
     "jsonrpc_host": "localhost",
     "jsonrpc_port": "8101",
     "exchange_interface": "http",
-    "exchange_port": 8080,
-    "owner": "0x7ae1b7fb8659cd8353e3ab197cc90f6769506d23",
-    "namereg": "0xee817813d866678124dc559d19b4504d815b296e"
+    "exchange_port": 8545,
+    "owner": "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b",
+    "namereg": "0x436474facc88948696b371052a1befb801f003ca"
 }
 

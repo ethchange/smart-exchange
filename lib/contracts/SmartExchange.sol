@@ -2,10 +2,15 @@
 import "owned";
 
 contract SmartExchange is owned {
+	event Created(bytes32 indexed id);
 	event AnonymousDeposit(address indexed from, uint value);
 	event Deposit(address indexed from, bytes32 indexed to, uint value);
 	event Transfer(bytes32 indexed from, address indexed to, uint value);
 	event IcapTransfer(bytes32 indexed from, address indexed to, bytes32 indirectId, uint value);
+
+	function SmartExchange(bytes32 id) {
+		Created(id);
+	}
 
 	function () {
 		AnonymousDeposit(msg.sender, msg.value);
