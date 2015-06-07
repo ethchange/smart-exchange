@@ -13,7 +13,7 @@
     "bluebird": "^2.9.25",
     "colors": "^1.1.0",
     "commander": "^2.8.1",
-    "jayson": "^1.2.0",
+    "jayson": "debris/jayson#cors",
     "web3": "^0.5.0",
     "worker-farm": "^1.3.1"
   }
