@@ -87,7 +87,7 @@ params:
 curl example:
 
 ```bash
-curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["XREG"]}' -H "Content-Type: application/json" http://localhost:8080
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["WYWY", "GAVOFYORK", "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b", 6]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
 #### exchange_transactions
