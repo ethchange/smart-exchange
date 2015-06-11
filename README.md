@@ -17,7 +17,7 @@ This script requires `geth` running in the background, with jsonrpc server on.
 
 ### Test environment requirements
 
-To setup test environment please go to [eth-deploy](https://github.com/debris/eth-deploy) repository and follow the steps there. `embark blockchain` command will run `geth` client with proper configuration in the background.
+To setup test environment please go to [eth-deploy](https://github.com/debris/eth-deploy) repository and follow the steps there. `embark-blockchain` command will run `geth` client with proper configuration in the background.
 
 ### Installation
 
