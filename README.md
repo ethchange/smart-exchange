@@ -3,14 +3,21 @@ This script should be used to deploy and manage [ICAP](https://github.com/ethere
 
 ### Requirements
 
-- node
-- npm
-- [solc](https://github.com/ethereum/cpp-ethereum) *0.9.19, available as a part of cpp-ethereum --devel*
-- [go-etheruem](https://github.com/ethereum/go-ethereum) *0.9.26* (or cpp-ethereum)
+Before using `smart-exchange` you need to install the following tools and you need to make sure that **ALL** of them are available in your PATH
 
-### Test environment
+- [node](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [solc](https://github.com/ethereum/cpp-ethereum) *0.9.23, available as a part of cpp-ethereum --devel*
+- [go-etheruem](https://github.com/ethereum/go-ethereum) *0.9.29*
+- [embark](https://github.com/iurimatias/embark-framework)
 
-To setup test environment please go to [eth-deploy](https://github.com/debris/eth-deploy) repository and follow the steps there.
+### Environment
+
+This script requires `geth` running in the background, with jsonrpc server on.
+
+### Test environment requirements
+
+To setup test environment please go to [eth-deploy](https://github.com/debris/eth-deploy) repository and follow the steps there. `embark blockchain` command will run `geth` client with proper configuration in the background.
 
 ### Installation
 
@@ -18,6 +25,14 @@ To setup test environment please go to [eth-deploy](https://github.com/debris/et
 gt clone https://github.com/debris/smart-exchange
 cd smart-exchange
 npm install
+```
+
+### Usage
+
+Before you start using `smart-exchange` you need to setup 2 options - `namereg` and `owner`. Look at configuration section for more details.
+
+```bash
+node app.js
 ```
 
 ### Configuration
@@ -46,11 +61,6 @@ example:
 }
 ```
 
-### Run
-
-```bash
-node app.js
-```
 
 ### JSONRPC methods
 
