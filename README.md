@@ -87,7 +87,7 @@ params:
 curl example:
 
 ```bash
-curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["WYWY", "GAVOFYORK", "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b", 6]}' -H "Content-Type: application/json" http://localhost:8545
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["XROF", "GAVOFYORK", "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b", 6]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
 #### exchange_transactions
@@ -102,7 +102,7 @@ params:
 curl example:
 
 ```bash
-curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transactions","params":["XREG", {"fromBlock": 410000}]}' -H "Content-Type: application/json" http://localhost:8080
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transactions","params":["XROF", {"fromBlock": 100}]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
 #### exchange_balance
@@ -116,7 +116,7 @@ params:
 curl example:
 
 ```bash
-curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROG"]}' -H "Content-Type: application/json" http://localhost:8080
+curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROF"]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
 
