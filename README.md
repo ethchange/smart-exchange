@@ -1,7 +1,7 @@
 # smart-exchange
 This script should be used to deploy and manage [ICAP](https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol) compatible ethereum exchange.
 
-### Requirements
+## Requirements
 
 Before using `smart-exchange` you need to install the following tools and you need to make sure that **ALL** of them are available in your PATH
 
@@ -11,15 +11,15 @@ Before using `smart-exchange` you need to install the following tools and you ne
 - [go-etheruem](https://github.com/ethereum/go-ethereum) *0.9.38*
 - [embark](https://github.com/iurimatias/embark-framework)
 
-### Environment
+## Environment
 
 This script requires `geth` running in the background, with jsonrpc server on.
 
-### Test environment requirements
+## Test environment requirements
 
 To setup test environment please go to [eth-deploy](https://github.com/debris/eth-deploy) repository and follow the steps there. `embark-blockchain` command will run `geth` client with proper configuration in the background.
 
-### Installation
+## Installation
 
 ```bash
 gt clone https://github.com/debris/smart-exchange
@@ -27,7 +27,7 @@ cd smart-exchange
 npm install
 ```
 
-### Usage
+## Usage
 
 Before you start using `smart-exchange` you need to setup 2 options - `namereg` and `owner`. Look at configuration section for more details.
 
@@ -35,7 +35,7 @@ Before you start using `smart-exchange` you need to setup 2 options - `namereg` 
 node app.js
 ```
 
-### Configuration
+## Configuration
 
 - **contract** - path to the contract which should be used on exchange creation.
 - **contract_name** - name of exchange contract which should be used.
@@ -61,29 +61,56 @@ example:
 }
 ```
 
+## JSONRPC methods
 
-### JSONRPC methods
-
-#### exchange_create
+### exchange_create
 
 Should be called to deploy new `smart exchange` contract to ethereum network and to register it with given identifier.
 
-params:
+**request params:**
 
-- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
-- overwrite: boolean that indicates, if we should create new exchange with given identifier if one already exists. True is unsafe.
+- **identifier**: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- **overwrite**: boolean that indicates, if we should create new exchange with given identifier if one already exists. True is unsafe.
 
-curl example:
+**request example:**
+
+```json
+{
+  "id": 8,
+  "jsonrpc": "2.0",
+  "method": "exchange_create",
+  "params": [
+    "XROF",
+    false
+  ]
+}
+```
+
+**using curl:**
 
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_create","params":["XROF", false]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
-#### exchange_transfer
+**response:**
+
+- **result** - address of the created exchange
+
+**response example:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 8,
+  "result": "0x209f728097e6ea54068c62b5b534c115b9c5d5b5"
+}
+```
+
+### exchange_transfer
 
 Should be called to transfer funds from exchange's client to other address / institution. Might be also used for internal transfers.
 
-params:
+**request params:**
 
 - identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
 - from: unique user identifier, 9 alphanumeric characters.
@@ -94,13 +121,33 @@ params:
     - unique userid, 9 alphanumeric characters
 - value: value that should be sent
 
-curl example:
+**request example:**
+
+```json
+{
+  "id": 8,
+  "jsonrpc": "2.0",
+  "method": "exchange_transfer",
+  "params": [
+    "XROF",
+    "GAVOFYORK",
+    "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b",
+    6
+  ]
+}
+```
+
+**using curl:**
 
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","params":["XROF", "GAVOFYORK", "0xdc167599eeef974dcbdc6c49da98c42ac9e1c64b", 6]}' -H "Content-Type: application/json" http://localhost:8545
 ```
 
-#### exchange_transactions
+**response:**
+
+- **result** - transaction hash
+
+### exchange_transactions
 
 Should be called to get list of exchange's transactions.
 
@@ -115,20 +162,29 @@ curl example:
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transactions","params":["XROF", {"fromBlock": 100}]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
-#### exchange_balance
+### exchange_balance
 
 Should be called to check the balance of `smart exchange` with given identifier.
 
-params:
+**params:**
 
 - identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
 
-curl example:
+**curl example:**
 
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROF"]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
+**response:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 8,
+  "result": "0"
+}"
+```
 
 # TL;DR
 
