@@ -147,6 +147,16 @@ curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","param
 
 - **result** - transaction hash
 
+**response example:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 8,
+  "result": "0x462602d51f5c4db38bd419529fd7a206735cf497a433eb81134fcecc910757e2"
+}
+```
+
 ### exchange_transactions
 
 Should be called to get list of exchange's transactions.
@@ -201,3 +211,9 @@ curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params
 - run `node app.js`
 - everyting is ready! you can use the API now!
 
+
+# TODO
+
+- `exchange_transaction(transactionHash)` method
+- configurable gas limits. It's required to make withdraws safe. Otherwise withdraw might drain to much ether from exchange contract.
+- consider requirement for user to `issue` ether. it's safer
