@@ -112,14 +112,14 @@ Should be called to transfer funds from exchange's client to other address / ins
 
 **request params:**
 
-- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
-- from: unique user identifier, 9 alphanumeric characters.
-- to, string which is one of:
-    - address, ethereum address, 20 bytes in base 16 representation
-    - direct iban, 34 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#direct
-    - indirect iban, 20 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#indirect
-    - unique userid, 9 alphanumeric characters
-- value: value that should be sent
+- **identifier**: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- **from**: unique user identifier, 9 alphanumeric characters.
+- **to**, string which is one of:
+    - **address**, ethereum address, 20 bytes in base 16 representation
+    - **direct iban**, 34 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#direct
+    - **indirect iban**, 20 alphanumeric characters, https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol#indirect
+    - **unique userid**, 9 alphanumeric characters
+- **value**: value that should be sent
 
 **request example:**
 
@@ -161,32 +161,76 @@ curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transfer","param
 
 Should be called to get list of exchange's transactions.
 
-params:
+**request params:**
 
-- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
-- options: may contain additional fields (fromBlock, toBlock), that should be used to filter exchange transactions
+- **identifier**: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- **options**: may contain additional fields (fromBlock, toBlock), that should be used to filter exchange transactions
 
-curl example:
+**request example:**
+
+```json
+{
+  "id": 8,
+  "jsonrpc": "2.0",
+  "method": "exchange_transactions",
+  "params": [
+    "XROF",
+    {
+      "fromBlock": 100
+    }
+  ]
+}
+```
+
+**using curl:**
 
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_transactions","params":["XROF", {"fromBlock": 100}]}' -H "Content-Type: application/json" http://localhost:8080
+```
+
+**response:**
+
+- **result** 
+
+**response example:**
+
+```json
+{
+}
 ```
 
 ### exchange_balance
 
 Should be called to check the balance of `smart exchange` with given identifier.
 
-**params:**
+**request params:**
 
-- identifier: unique 4 uppercase alphanumeric characters that are an exchange identifier
+- **identifier**: unique 4 uppercase alphanumeric characters that are an exchange identifier
 
-**curl example:**
+**request example:**
+
+```json
+{
+  "id": 8,
+  "jsonrpc": "2.0",
+  "method": "exchange_balance",
+  "params": [
+    "XROF"
+  ]
+}
+```
+
+**using curl:**
 
 ```bash
 curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params":["XROF"]}' -H "Content-Type: application/json" http://localhost:8080
 ```
 
 **response:**
+
+- **result** exchange balance
+
+**response example:**
 
 ```json
 {
@@ -215,5 +259,5 @@ curl -X POST --data '{"id":8,"jsonrpc":"2.0","method":"exchange_balance","params
 # TODO
 
 - `exchange_transaction(transactionHash)` method
-- configurable gas limits. It's required to make withdraws safe. Otherwise withdraw might drain to much ether from exchange contract.
+- configurable gas limits. It's required to make withdraws safe. Otherwise withdraw might drain to much ether from owner address.
 - consider requirement for user to `issue` ether. it's safer
