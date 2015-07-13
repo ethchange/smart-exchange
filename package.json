@@ -15,7 +15,7 @@
     "commander": "^2.8.1",
     "jayson": "debris/jayson#cors",
     "sleep": "^2.0.0",
-    "web3": "^0.8.1",
+    "web3": "ethereum/web3.js#kiss!",
     "worker-farm": "^1.3.1"
   }
 }
