@@ -1,0 +1,4 @@
+{
+    "jsonrpc_port": "8101",
+    "datadir": "./testnet_data"
+}
