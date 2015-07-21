@@ -58,6 +58,7 @@ var run = function (config, address) {
 
     var geth = spawn('geth', args);
 
+    // that's ugly
     geth.stdout.on('data', function (data) {
         var str = data.toString();
         if (str.match(/===/)) {
@@ -87,10 +88,10 @@ var createDirectory = function (dir) {
 };
 
 var start = function (config) {
-    log.info('2/5 Getting address...');
+    log.info('2/7 Getting address...');
     var address = getAddress(config)
-    log.info('3/5 Using address ' + address);
-    log.info('4/5 Starting geth')
+    log.info('3/7 Using address ' + address);
+    log.info('4/7 Starting geth')
     run(config, address);
     return address;
 };
