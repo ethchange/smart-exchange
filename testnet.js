@@ -29,7 +29,7 @@ var address = testnetStart(config);
 
 if (!deploy) {
     log.info('5/7 Skipping namereg deployment.');
-    log.info('6/7 Skipping updating json config.json.');
+    log.info('6/7 Skipping updating config.json.');
     log.info('7/7 Ready!');
 } else {
     log.info('5/7 Deploying namereg...');
