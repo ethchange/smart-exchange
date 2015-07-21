@@ -9,12 +9,13 @@ var deploy = function (config, address, callback) {
 
     web3.setProvider(new web3.providers.HttpProvider('http://localhost:' + config.jsonrpc_port));
 
-    var onTimeout = function () {
+    var interval = setInterval(function () {
         // wrap it into try catch cause we dont know when rpc server starts
         try { 
             // these value must match value from scripts/mine.js
-            if (web3.eth.getBalance(address) >= 30000000000000000000 && !deployed) {
+            if ((web3.eth.getBalance(address) >= 30000000000000000000) && !deployed) {
                 deployed = true; // or at least tried to
+                clearInterval(interval);
                 var file = fs.readFileSync(__dirname + '/contracts/GlobalRegistrar.sol'); 
                 var compiled = web3.eth.compile.solidity(file.toString());
 
@@ -48,10 +49,8 @@ var deploy = function (config, address, callback) {
             }
         } catch (err) {
             log.warn('Deploying contract failed. Trying again...');
-            setTimeout(onTimeout, 1000);
         }
-    };
-    onTimeout(); 
+    }, 1000);
 };
 
 module.exports = deploy;
