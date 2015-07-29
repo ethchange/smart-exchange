@@ -54,6 +54,7 @@ var run = function (config, address) {
     cmd = addArg(cmd, '--unlock ' + address);
     cmd = addArg(cmd, 'js ./testnet/scripts/mine.js')
 
+    console.log(cmd);
     var args = toSpawnArgs(cmd);
 
     var geth = spawn('geth', args);
