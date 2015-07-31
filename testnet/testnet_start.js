@@ -17,6 +17,7 @@ var basicCommand = function (config) {
     //cmd = addArg(cmd, '--mine');
     cmd = addArg(cmd, '--maxpeers=0');
     cmd = addArg(cmd, '--verbosity=0');
+    cmd = addArg(cmd, '--genesis ' + './testnet/genesis_block.json');
     cmd = addArg(cmd, '--password ' + './testnet/password/password');
     
     var networkId = Math.floor((Math.random() * 100000) + 1000);
@@ -76,11 +77,13 @@ var run = function (config, address) {
     });
 
     geth.on('error', function (data) {
-        log.warn(data.toString());
+        log.error(data.toString());
+        process.exit(1);
     });
 
     geth.on('close', function (code) {
-        log.warn('child process exited with code ' + code);
+        log.error('child process exited with code ' + code);
+        process.exit(1);
     });
 };
 
