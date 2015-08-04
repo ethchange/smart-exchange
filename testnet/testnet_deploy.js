@@ -16,12 +16,12 @@ var deploy = function (config, address, callback) {
             if ((web3.eth.getBalance(address) >= 30000000000000000000) && !deployed) {
                 deployed = true; // or at least tried to
                 clearInterval(interval);
-                var file = fs.readFileSync(__dirname + '/contracts/GlobalRegistrar.sol'); 
+                var file = fs.readFileSync(__dirname + '/contracts/FixedFeeRegistrar.sol'); 
                 var compiled = web3.eth.compile.solidity(file.toString());
 
                 // TODO: make it configurable
-                var code = compiled.GlobalRegistrar.code; 
-                var abi = compiled.GlobalRegistrar.info.abiDefinition;
+                var code = compiled.FixedFeeRegistrar.code; 
+                var abi = compiled.FixedFeeRegistrar.info.abiDefinition;
 
 
                 // create new contract and get it's transaction hash

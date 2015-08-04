@@ -9,7 +9,8 @@ setInterval(function() {
         console.log('===Mined block: ' + bn);
     }
 
-    var minimalAmount = (web3.eth.getBalance(web3.eth.coinbase) >= 30000000000000000000);
+    // mine 80 eth
+    var minimalAmount = (web3.eth.getBalance(web3.eth.coinbase) >= +web3.toWei(180, 'ether'));
     var pendingTransactions = txpool.status.pending || txpool.status.queued;
 
     if (!web3.eth.mining && (!minimalAmount || pendingTransactions)) {
