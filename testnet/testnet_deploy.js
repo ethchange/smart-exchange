@@ -39,9 +39,6 @@ var deploy = function (config, address, callback) {
                     }
                     sleep.sleep(1);
                 }
-                
-                console.log(JSON.stringify(receipt, null, 2));
-                
 
                 if (receipt) {
                     // after receiving transaction receipt we can assume, that contract is properly created
