@@ -1,22 +1,22 @@
-//sol FixedFeeRegistrar
+//sol ICAP REGISTRAR 
 // Simple global registrar with fixed-fee reservations.
 // @authors:
 //   Gav Wood <g@ethdev.com>
 
-contract TinyFixedFeeRegistrar {
-	event Changed(bytes32 indexed name);
+contract ICAPRegistrar {
 
 	struct Record {
 		address addr;
 		address owner;
 	}
 
+	event Changed(bytes32 indexed name);
+
 	modifier onlyrecordowner(bytes32 _name) { if (m_record[_name].owner == msg.sender) _ }
 
 	function reserve(bytes32 _name) {
-	    Record rec = m_record[_name];
-		if (rec.owner == 0 && msg.value >= c_fee) {
-			rec.owner = msg.sender;
+		if (m_record[_name].owner == 0 && msg.value >= c_fee) {
+			m_record[_name].owner = msg.sender;
 			Changed(_name);
 		}
 	}
@@ -36,12 +36,6 @@ contract TinyFixedFeeRegistrar {
 		Changed(_name);
 	}
 	
-	function record(bytes32 _name) constant returns (address o_addr, address o_owner) {
-	    Record rec = m_record[_name];
-		o_addr = rec.addr;
-		o_owner = rec.owner;
-	}
-
 	function addr(bytes32 _name) constant returns (address) { return m_record[_name].addr; }
 	function owner(bytes32 _name) constant returns (address) { return m_record[_name].owner; }
 

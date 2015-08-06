@@ -16,17 +16,17 @@ var deploy = function (config, address, callback) {
             if ((web3.eth.getBalance(address) >= 30000000000000000000) && !deployed) {
                 deployed = true; // or at least tried to
                 clearInterval(interval);
-                var file = fs.readFileSync(__dirname + '/contracts/TinyFixedFeeRegistrar.sol'); 
+                var file = fs.readFileSync(__dirname + '/contracts/ICAPRegistrar.sol'); 
                 var compiled = web3.eth.compile.solidity(file.toString());
 
                 // TODO: make it configurable
-                var code = compiled.TinyFixedFeeRegistrar.code; 
-                var abi = compiled.TinyFixedFeeRegistrar.info.abiDefinition;
+                var code = compiled.ICAPRegistrar.code; 
+                var abi = compiled.ICAPRegistrar.info.abiDefinition;
 
 
                 // create new contract and get it's transaction hash
-                // TinyFixedFeeRegistrar costs 477066
-                var transactionHash = web3.eth.contract(abi).new({data: code, from: owner, gas: 500000}).transactionHash;
+                // ICAPRegistrar costs 422659
+                var transactionHash = web3.eth.contract(abi).new({data: code, from: owner, gas: 423000}).transactionHash;
 
                 // wait for contract to be mined for 120 seconds
                 // TODO: validate receipt code
@@ -39,6 +39,9 @@ var deploy = function (config, address, callback) {
                     }
                     sleep.sleep(1);
                 }
+                
+                console.log(JSON.stringify(receipt, null, 2));
+                
 
                 if (receipt) {
                     // after receiving transaction receipt we can assume, that contract is properly created
