@@ -16,16 +16,17 @@ var deploy = function (config, address, callback) {
             if ((web3.eth.getBalance(address) >= 30000000000000000000) && !deployed) {
                 deployed = true; // or at least tried to
                 clearInterval(interval);
-                var file = fs.readFileSync(__dirname + '/contracts/FixedFeeRegistrar.sol'); 
+                var file = fs.readFileSync(__dirname + '/contracts/ICAPRegistrar.sol'); 
                 var compiled = web3.eth.compile.solidity(file.toString());
 
                 // TODO: make it configurable
-                var code = compiled.FixedFeeRegistrar.code; 
-                var abi = compiled.FixedFeeRegistrar.info.abiDefinition;
+                var code = compiled.ICAPRegistrar.code; 
+                var abi = compiled.ICAPRegistrar.info.abiDefinition;
 
 
                 // create new contract and get it's transaction hash
-                var transactionHash = web3.eth.contract(abi).new({data: code, from: owner, gas: 2500000}).transactionHash;
+                // ICAPRegistrar costs 422659
+                var transactionHash = web3.eth.contract(abi).new({data: code, from: owner, gas: 423000}).transactionHash;
 
                 // wait for contract to be mined for 120 seconds
                 // TODO: validate receipt code
