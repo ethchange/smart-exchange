@@ -5,6 +5,6 @@
   "jsonrpc_port": "8101",
   "exchange_interface": "http",
   "exchange_port": 8545,
-  "owner": "0x15992a6d31f037acff7401b75e26e9a346c7647e",
-  "namereg": "0x66ba073f1c76484bee09dca0cf35615a08035146"
+  "owner": "0xc22097fb167c3d9d0c85e933c7712e787e48eac5",
+  "namereg": "0xa54539c962030424dccc3898c72ac9e61fb9b66d"
 }
