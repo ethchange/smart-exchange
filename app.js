@@ -5,7 +5,7 @@ var configPath = './config.json';
 
 // Define program options
 program
-    .version('0.1.0')
+    .version('2.1.6')
     .option('-c, --config <path>', 'set config path. default to ./config.json')
     .parse(process.argv);
 
